@@ -1,4 +1,12 @@
 terraform {
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "ndixon"
+    workspaces {
+      name = "demo"
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
