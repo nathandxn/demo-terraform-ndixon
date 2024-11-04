@@ -44,3 +44,17 @@ resource "aws_instance" "instance_2" {
               python3 -m http.server 8080 &
               EOF
 }
+
+# provision s3 bucket
+resource "aws_s3_bucket" "bucket" {
+  bucket_prefix = "devops-directive-web-app-data"
+  force_destroy = true
+}
+
+# add s3 versioning - allows for the restoration of previous object versions
+resource "aws_s3_bucket_versioning" "bucket_versioning" {
+  bucket = aws_s3_bucket.bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
