@@ -23,6 +23,10 @@ resource "aws_security_group" "instances" {
   name = "instance-security-group"
 }
 
+resource "aws_security_group" "alb" {
+  name = "alb-security-group"
+}
+
 resource "aws_instance" "instance_1" {
   ami           = "ami-005fc0f236362e99f" # Ubuntu 20.04 LTS // us-east-1
   instance_type = "t2.micro"
