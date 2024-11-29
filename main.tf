@@ -172,3 +172,19 @@ resource "aws_lb_listener_rule" "instances" {
     target_group_arn = aws_lb_target_group.instances.arn
   }
 }
+
+resource "aws_route53_zone" "primary" {
+  name = "nathandixonetudes.com"
+}
+
+resource "aws_route53_record" "root" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "nathandixonetudes.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.load_balancer.dns_name
+    zone_id                = aws_lb.load_balancer.zone_id
+    evaluate_target_health = true
+  }
+}
