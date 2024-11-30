@@ -20,7 +20,7 @@ locals {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 resource "aws_security_group" "instances" {
