@@ -198,7 +198,7 @@ resource "aws_db_instance" "db_instance" {
   engine_version             = "16"
   instance_class             = "db.t3.micro"
   name                       = "mydb"
-  username                   = "admin"
+  username                   = "adminusr"
   password                   = "adminpass"
   skip_final_snapshot        = true
 }
