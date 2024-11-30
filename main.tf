@@ -188,3 +188,17 @@ resource "aws_route53_record" "root" {
     evaluate_target_health = true
   }
 }
+
+resource "aws_db_instance" "db_instance" {
+  allocated_storage = 10 // gigabytes
+
+  auto_minor_version_upgrade = false
+  storage_type               = "standard"
+  engine                     = "postgres"
+  engine_version             = "16"
+  instance_class             = "db.t3.micro"
+  name                       = "mydb"
+  username                   = "admin"
+  password                   = "adminpass"
+  skip_final_snapshot        = true
+}
