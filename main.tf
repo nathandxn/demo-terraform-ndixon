@@ -15,6 +15,10 @@ terraform {
   }
 }
 
+locals {
+    extra_tag = "extra-tag"
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -68,6 +72,9 @@ resource "aws_instance" "instance_1" {
               echo "Hello, World 1" > index.html
               python3 -m http.server 8080 &
               EOF
+  tags = {
+    ExtraTag = local.extra_tag
+  }
 }
 
 resource "aws_instance" "instance_2" {
